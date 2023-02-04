@@ -6,7 +6,7 @@
 
 namespace cpu
 {
-   static constexpr auto DATA_MEMORY_ADDRESS_WIDTH = 100;
+   static constexpr auto DATA_MEMORY_ADDRESS_WIDTH = 300;
 
    void data_memory_reset(void);
    int data_memory_write(const uint16_t address,
