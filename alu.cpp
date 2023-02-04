@@ -1,0 +1,58 @@
+#include "alu.hpp"
+
+uint32_t cpu::alu(const uint16_t op,
+                  const uint32_t a,
+                  const uint32_t b,
+                  uint8_t& sr)
+{
+   uint64_t result = 0x00;
+   sr &= ~((1 << S) | (1 << N) | (1 << Z) | (1 << V) | (1 << C));
+
+   switch (op)
+   {
+      case OR:
+      {
+         result = a | b;
+         break;
+      }
+      case AND:
+      {
+         result = a & b;
+         break;
+      }
+      case XOR:
+      {
+         result = a ^ b;
+         break;
+      }
+      case ADD:
+      {
+         result = a + b;
+
+         if ((read(a, 32) == read(b, 32)) && (read(result, 32) != read(a, 32)))
+         {
+            set(sr, V);
+         }
+
+         break;
+      }
+      case SUB:
+      {
+         result = a + (pow(2, 32) - b);
+
+         if ((read(a, 32) == read(b, 32)) && (read(result, 32) != read(a, 32)))
+         {
+            set(sr, V);
+         }
+
+         break;
+      }
+   }
+
+   if (read(result, 33))           set(sr, C);
+   if (read(result, 32))           set(sr, N);
+   if (result == 0)                set(sr, Z);
+   if (read(sr, N) != read(sr, V)) set(sr, S);
+
+   return static_cast<uint32_t>(result);
+}
