@@ -76,11 +76,11 @@ namespace cpu
    static constexpr auto R8  = 0x08;
    static constexpr auto R9  = 0x09;
    static constexpr auto R10 = 0x0A;
-   static constexpr auto R11 = 0x0A;
-   static constexpr auto R12 = 0x0A;
-   static constexpr auto R13 = 0x0A;
-   static constexpr auto R14 = 0x0A;
-   static constexpr auto R15 = 0x0A;
+   static constexpr auto R11 = 0x0B;
+   static constexpr auto R12 = 0x0C;
+   static constexpr auto R13 = 0x0D;
+   static constexpr auto R14 = 0x0E;
+   static constexpr auto R15 = 0x0F;
 
    static constexpr auto R16 = 0x10;
    static constexpr auto R17 = 0x11;
