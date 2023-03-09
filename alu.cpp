@@ -40,7 +40,7 @@ uint32_t cpu::alu(const uint16_t op,
       {
          result = a + (pow(2, 32) - b);
 
-         if ((read(a, 32) == read(b, 32)) && (read(result, 32) != read(a, 32)))
+         if ((read(a, 31) == read(b, 31)) && (read(result, 31) != read(a, 31)))
          {
             set(sr, V);
          }
@@ -49,8 +49,8 @@ uint32_t cpu::alu(const uint16_t op,
       }
    }
 
-   if (read(result, 33))           set(sr, C);
-   if (read(result, 32))           set(sr, N);
+   if (read(result, 32))           set(sr, C);
+   if (read(result, 31))           set(sr, N);
    if (dword(result) == 0)         set(sr, Z);
    if (read(sr, N) != read(sr, V)) set(sr, S);
 
